@@ -1,16 +1,16 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["*"],
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"],
+    allow_origins=["*"],  # Permettre toutes les origines (à restreindre en production)
+    allow_credentials=True,  # Autoriser l'envoi des cookies/credentials
+    allow_methods=["*"],  # Permettre toutes les méthodes HTTP
+    allow_headers=["*"],  # Permettre tous les en-têtes
 )
-
 
 
 class Student(BaseModel):
